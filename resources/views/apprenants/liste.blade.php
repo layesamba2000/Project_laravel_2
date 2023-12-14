@@ -16,8 +16,14 @@
 <body>
     <div class="container">
         <h1 class="mt-5 mb-4">Liste des Apprenants</h1>
-        
-        <table class="table table-striped">
+        <p></p>
+      <!-------------- Pour afficher le bouton ajouter avec le lien------------->
+        <!-----<a href={{ url('apprenants/new')}} type="button" class="btn btn-success float-end">Ajouter</a>--->
+        <a href={{ route('ajouter-apprenants')}} type="button" class="btn btn-success float-end">Ajouter</a>
+
+
+     
+    <table class="table table-striped">
           <thead>
                 <tr>
                     <th scope="col">#</th>
