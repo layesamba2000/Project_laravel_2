@@ -11,15 +11,12 @@ class MatiereController extends Controller
 {
     public function index(){
         $listesMatiers = Matiere::all();
+        
         return view("matiere/liste", ["liste"=> $listesMatiers]);
     }
 
-    // Dans le modèle Matiere.php
+    
 
-public function professeurs()
-{
-    return $this->belongsTo(Professeur::class, 'professeur_id');
-}
-
+    
 }
 

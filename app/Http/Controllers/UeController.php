@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Ue;
 
 
-//Pour Afficher la liste des matiers
+//Pour Afficher la liste des ues
 class UeController extends Controller
 {
     public function index(){

@@ -23,8 +23,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('/apprenants',[ApprenantController::class, "index"]);
+Route::get('/apprenants',[ApprenantController::class, "index"])->name('liste-apprenants');
 Route::get('/matiere',[MatiereController::class, "index"]);
 Route::get('/note',[NoteController::class, "index"]);
 Route::get('/ue',[UeController::class, "index"]);
 Route::get('/professeur',[ProfesseurController::class, "index"]);
+//Route pour afficher
+Route::get('/apprenants/new',[ApprenantController::class, "create"])->name('ajouter-apprenants');
+
+//Route Pour enrichistre dans la base
+Route::post('/students/store',[ApprenantController::class, "store"])->name('store-student');
