@@ -14,7 +14,7 @@ class ApprenantController extends Controller
         return view("apprenants/liste", ["liste"=> $listesApprenants]);
     }
 
-    //Pour creer le lien pour la redirection sur la base ajout
+    //Pour creer le lien pour la redirection sur le fichier ajout
 
     public function create()
     {
@@ -42,18 +42,77 @@ class ApprenantController extends Controller
 
 
        //Pour empecher de rien saisi
-        $request->validate([
-        "nom"=> "required",
-        "prenom"=> "required",
-        "telephone"=> "required",
-        "matricule"=> "required"
-       ]);
+$request->validate([
+    "nom" => "required",
+    "prenom" => "required",
+    "telephone" => "required",
+    "matricule" => "required"
+], [
+    "nom.required" => "Le champ Nom est requis.",
+    "prenom.required" => "Le champ Prénom est requis.",
+    "telephone.required" => "Le champ Téléphone est requis.",
+    "matricule.required" => "Le champ Matricule est requis."
+]);
+
     
        Apprenant::create($request-> all());
+
+       return redirect()->route('liste-apprenants')->with('success', 'Apprenant mis à jour avec succès');
+
     
     }
+    
 
+    //Pour creer le lien pour la redirection sur la base de modification
 
+    public function edit($id)
+    {
+        $apprenant = Apprenant::find($id);
+    
+        return view('apprenants.edit', compact('apprenant'));
+    }
+    //Pour la modification
+
+    public function update(Request $request, $id)
+    {
+        // Valider les données du formulaire
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'telephone' => 'required',
+            'matricule' => 'required',
+            // Ajoutez d'autres règles de validation selon vos besoins
+        ]);
+    
+        // Trouver l'apprenant à mettre à jour
+        $apprenant = Apprenant::findOrFail($id);
+    
+        // Mettre à jour les données de l'apprenant
+        $apprenant->update([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'telephone' => $request->telephone,
+            'matricule' => $request->matricule,
+        
+        ]);
+    
+        // Rediriger avec un message de succès
+
+        return redirect()->route('liste-apprenants', $id)->with('success', 'Apprenant mis à jour avec succès');
+    }
+    
+
+    public function destroy($id)
+{
+    // Trouver l'apprenant à supprimer
+    $apprenant = Apprenant::findOrFail($id);
+
+    // Supprimer l'apprenant
+    $apprenant->delete();
+
+    // Rediriger avec un message de succès
+    return redirect()->route('liste-apprenants')->with('success', 'Apprenant supprimé avec succès');
+}
 
 }
 

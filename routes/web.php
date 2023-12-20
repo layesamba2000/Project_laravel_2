@@ -30,6 +30,16 @@ Route::get('/ue',[UeController::class, "index"]);
 Route::get('/professeur',[ProfesseurController::class, "index"]);
 //Route pour afficher
 Route::get('/apprenants/new',[ApprenantController::class, "create"])->name('ajouter-apprenants');
+//Pour la modification
+Route::get('/apprenants/modifie/{id}', [ApprenantController::class, 'edit'])->name('modifie-apprenants');
+Route::put('/apprenants/modifie/{id}', [ApprenantController::class, 'update'])->name('apprenant.update');
+
+
+
+//Pour la suppression
+
+Route::delete('/apprenant/{id}', [ApprenantController::class, 'destroy'])->name('apprenant.destroy');
+
 
 //Route Pour enrichistre dans la base
 Route::post('/students/store',[ApprenantController::class, "store"])->name('store-student');

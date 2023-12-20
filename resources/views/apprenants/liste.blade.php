@@ -31,6 +31,7 @@
                     <th scope="col">Prénom</th>
                     <th scope="col">Matricule</th>
                     <th scope="col">Telephone</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +42,18 @@
                     <td>{{ $apprenant->prenom }}</td>
                     <td>{{ $apprenant->matricule }}</td>
                     <td>{{ $apprenant->telephone }}</td>
-               
+                    <td>
+                         <!-- Bouton Modifier -->
+                        <a href="{{ route('modifie-apprenants', $apprenant->id) }}" class="btn btn-primary">Modifier</a>
+
+                        <!-- Bouton Supprimer -->
+                        <form action="{{ route('apprenant.destroy', $apprenant->id) }}" method="POST" style="display: inline-block;">
+                          @csrf
+                          @method('DELETE')
+                         <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+
+                    </td>
                   </tr>
                   @endforeach
             </tbody>
