@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ApprenantController;
 use App\Http\Controllers\NoteController;
+//use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\UeController;
@@ -24,7 +25,7 @@ Route::get('/', function () {
 
 
 Route::get('/apprenants',[ApprenantController::class, "index"])->name('liste-apprenants');
-Route::get('/matiere',[MatiereController::class, "index"]);
+//Route::get('/matiere',[MatiereController::class, "index"]);
 Route::get('/note',[NoteController::class, "index"]);
 Route::get('/ue',[UeController::class, "index"]);
 Route::get('/professeur',[ProfesseurController::class, "index"]);
@@ -43,3 +44,6 @@ Route::delete('/apprenant/{id}', [ApprenantController::class, 'destroy'])->name(
 
 //Route Pour enrichistre dans la base
 Route::post('/students/store',[ApprenantController::class, "store"])->name('store-student');
+
+Route::resource('matieres' , MatiereController::class);
+

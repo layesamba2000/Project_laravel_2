@@ -14,4 +14,15 @@ class Matiere extends Model
     {
         return $this->belongsTo(Professeur::class, 'professeur_id');
     }
+
+    protected $fillable = [
+        'nomMatiere',
+        'coef',
+        'credit',
+        'horaire',
+        'professeur_id',
+   
+         // Ajoutez cette ligne pour autoriser l'assignation en masse du champ _token
+    ];
 }
+

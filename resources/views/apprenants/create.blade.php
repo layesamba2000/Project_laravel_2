@@ -22,6 +22,7 @@
     </div>
 @endif
 
+
     <form action="{{route('store-student')}}" class="border p-4" style="width: 600px;" method="post">
     @csrf
     <h1 class="mt-5 mb-4">Ajout Apprenants</h1>
